@@ -1,0 +1,4 @@
+Gene symbol: LMOD3
+NCBI Gene ID: 56203
+Official name: leiomodin 3
+Chromosome: 3
