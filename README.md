@@ -22,7 +22,20 @@
 
 ---
 
-## III. Methods: Step-by-Step R Implementation
+## III. Research Question & Objectives
+
+### Research Question
+How does the `p.Leu550Phe` mutation in the human *LMOD3* gene affect the Leiomodin-3 protein, and how does this molecular change lead to Nemaline Myopathy 10 (NEM10)?
+
+### Objectives
+1. **Automated Retrieval:** Use R to pull the official reference transcript (`NM_198271.5`) and protein sequence (`NP_938012.2`, 560 amino acids) straight from NCBI.
+2. **Composition & Mapping:** Calculate the amino acid breakdown of the protein and map the exact location of the variant (`c.1648C>T`, `p.Leu550Phe`) along the sequence.
+3. **Clinical Check:** Look up ClinVar (ID `374498`) to verify its medical classification, submitter consensus, and supporting research.
+4. **Mechanism & Testing:** Build a clear step-by-step causal chain showing how the mutation disrupts muscle structure, and suggest a lab experiment to test it.
+
+---
+
+## IV. Methods: Step-by-Step R Implementation
 
 ### Step 1: Environment Setup and Variables
 The script loads the `rentrez` package to download data from NCBI and `ggplot2` to make charts. It sets up the variables of the assignment that is needed (`LMOD3`, `NM_198271.5`, `374498`, `p.Leu550Phe`) and creates local folders (`data`, `results`, `figures`) to store your files.
@@ -126,7 +139,9 @@ if (nzchar(variant_protein)) {
   ggsave("figures/02_variant_position.png", fig2, width = 8, height = 2.5, dpi = 300)
 }
 ```
-## IV. Results 
+---
+
+## V. Results 
 
 ![Amino Acid Composition Bar Plot](figures/01_amino_acid_composition.png)
 **Figure 1.** _Amino-Acid Composition Bar Plot_
@@ -136,9 +151,11 @@ The bar graph shows the count of each standard amino acid across the 560-residue
 ![Variant Position Map](figures/02_variant_position.png)
 **Figure 2.** Linear Variant Position Map
 
-The recoreder result map outlines the 560 amino acid reference backbone of the LMOD3 protein and marks the location of the p.Leu550Phe variant with a point at codon 550. Placing this mutation on the linear coordinate sequence shows that the substitution occurs near the C-terminal end of the protein.
+The recorded result map outlines the 560 amino acid reference backbone of the LMOD3 protein and marks the location of the p.Leu550Phe variant with a point at codon 550. Placing this mutation on the linear coordinate sequence shows that the substitution occurs near the C-terminal end of the protein.
 
-## V. Retrieved ClinVar Records
+---
+
+## VI. Retrieved ClinVar Records
 **URL Visited:** https://www.ncbi.nlm.nih.gov/clinvar/variation/374498/   
 
 **Variant Name:** NM_198271.5(LMOD3):c.1648C>T (p.Leu550Phe).
@@ -163,7 +180,9 @@ The recoreder result map outlines the 560 amino acid reference backbone of the L
 
 **Evaluation Note:** All clinical reports agree that this variant is pathogenic, and predictive tools (like SIFT and PolyPhen-2) flag it as damaging.
 
-## VI. Discussion
+---
+
+## VII. Discussion
 Analyzing the human LMOD3 gene helps us understand the genetic causes of congenital nemaline myopathy. This gene produces Leiomodin-3 (Lmod3), a specialized protein that helps organize and anchor muscle thin filaments. Using R, we successfully retrieved the reference transcript (NM_198271.5), which corresponds to the protein product (NP_938012.2, spanning 560 amino acids). While calculating amino acid counts gives us a useful chemical baseline, it cannot show how the protein folds in three dimensions or how it functions inside living cells.
 
 The ClinVar database (ID 374498) clearly links the p.Leu550Phe variant to autosomal recessive Nemaline Myopathy 10 (NEM10). As supported by clinical studies such as Schatz et al. (2018) (PMID: 30291184), this mutation replaces a neutral Leucine residue with a bulkier Phenylalanine near the end of the protein. This extra physical bulk disrupts the local structure and hydrophobic packing. Clinically, patients with this mutation experience early muscle weakness, low muscle tone, and the accumulation of abnormal protein aggregates (nemaline rods) in their muscle fibers.
@@ -181,31 +200,34 @@ Although clinical databases and predictive computer tools (such as SIFT and Poly
 
 **Proposed Validation Experiment:** An in vitro pyrene-actin polymerization assay. By purifying recombinant wild-type and mutant (L550F) proteins and tracking actin assembly with fluorescence, we can test if the mutant protein has a reduced ability to build actin filaments.
 
-## VII. Questions and Answer
+---
+
+## VIII. Questions and Answer
 1. **What does your assigned gene encode, and how does this protein contribute to muscle function?**
-   * *LMOD3* encodes Leiomodin-3, an actin-nucleating protein at the pointed ends of muscle thin filaments that keeps muscle structure organized[cite: 2].
+   * *LMOD3* encodes Leiomodin-3, an actin-nucleating protein at the pointed ends of muscle thin filaments that keeps muscle structure organized.
 2. **What was the exact protein accession and length retrieved with R?**
    * Accession **`NP_938012.2`** with a length of **560 amino acids**.
 3. **What did the amino-acid composition chart show? What can it NOT tell you?**
    * It showed counts for the 20 standard amino acids. It cannot show 3D folding or how a mutation affects protein interactions.
 4. **What is your fixed ClinVar variant, and what is its current classification and evidence strength?**
-   * ClinVar ID **374498** (`NM_198271.5:c.1648C>T`, `p.Leu550Phe`), classified as **Pathogenic** with strong multi-submitter evidence[cite: 1, 2].
+   * ClinVar ID **374498** (`NM_198271.5:c.1648C>T`, `p.Leu550Phe`), classified as **Pathogenic** with strong multi-submitter evidence.
 5. **What is the scientifically supported mechanism linking this variant to muscle function, and what remains uncertain?**
-   * It swaps Leucine for Phenylalanine near the C-terminus, causing NEM10 by disrupting thin-filament organization[cite: 1, 2]. Exact kinetic shifts in binding remain under study[cite: 1].
+   * It swaps Leucine for Phenylalanine near the C-terminus, causing NEM10 by disrupting thin-filament organization. Exact kinetic shifts in binding remain under study.
 6. **What additional experiment would help test the proposed mechanism?**
    * An *in vitro* pyrene-actin polymerization assay to compare assembly rates.
-* **Limitations:** Database queries and prediction software provide strong clues and clinical correlations[cite: 1], but they do not directly measure physical 3D structures or protein degradation rates inside living cells.
+* **Limitations:** Database queries and prediction software provide strong clues and clinical correlations, but they do not directly measure physical 3D structures or protein degradation rates inside living cells.
 
 ---
 
-## VIII. Reproduction Instructions
+## IX. Reproduction Instructions
 To rerun this analysis on a fresh R installation:
 1. Open R or RStudio.
 2. Install the required packages by running: `install.packages(c("rentrez", "ggplot2"))`.
 3. Save the script as `analysis.R` and run it. It will automatically create your folders (`data`, `results`, `figures`), pull data from NCBI, generate composition CSVs, and save your figures. Make sure your exported PNG images are committed and pushed to the `figures/` directory so they render properly in your GitHub README.
 
 ---
-## IX. Database & Reference Links
+
+## X. Database & Reference Links
 * **NCBI Gene Record:** [NCBI Gene 348932](https://www.ncbi.nlm.nih.gov/gene/348932)
 * **NCBI Protein Record:** [NCBI Protein NP_938012.2](https://www.ncbi.nlm.nih.gov/protein/NP_938012.2)
 * **NCBI Nucleotide Record:** [NCBI Nucleotide NM_198271.5](https://www.ncbi.nlm.nih.gov/nuccore/NM_198271.5)
@@ -214,5 +236,6 @@ To rerun this analysis on a fresh R installation:
 * **RCSB Protein Data Bank:** [RCSB PDB](https://www.rcsb.org/)
 * **AlphaFold Protein Structure Database:** [AlphaFold DB](https://alphafold.ebi.ac.uk/)
 * **`rentrez` R Documentation:** [rOpenSci rentrez Docs](https://docs.ropensci.org/rentrez/)
-* **Primary Reference (PMID 30291184):** Schatz UA, et al. (2018). *Evidence of mild founder LMOD3 mutations causing nemaline myopathy 10 in Germany and Austria.* European Journal of Human Genetics, 26(11): 1664–1670.
+* **Reference (Discovery / PMID 25250574):** [Yuen M, et al. (2014). Leiomodin-3 dysfunction results in thin filament disorganization and nemaline myopathy. *J Clin Invest*, 124(11):4693–4708.](https://pubmed.ncbi.nlm.nih.gov/25250574/)
+* **Reference (Milder Phenotype / PMID 30291184):** [Schatz UA, et al. (2018). Evidence of mild founder LMOD3 mutations causing nemaline myopathy 10 in Germany and Austria. *Neurology*, 91(18):e1690-e1694.](https://pubmed.ncbi.nlm.nih.gov/30291184/)
 * **Access Date:** October 2026
